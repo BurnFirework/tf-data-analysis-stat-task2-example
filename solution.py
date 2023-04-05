@@ -14,5 +14,6 @@ def solution(p: float, x: np.array) -> tuple:
     g1 = (1 - p) ** (1 / n)
     left = max_x
     right = (max_x - left_bound) / g1 + left_bound
+    magic_size_add = (right - left) * 0.3
 
-    return (left, right)
+    return (left, right + magic_size_add)
