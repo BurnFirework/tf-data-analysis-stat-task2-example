@@ -7,11 +7,12 @@ from scipy.stats import norm
 chat_id = 860138765
 
 def solution(p: float, x: np.array) -> tuple:
-    # Измените код этой функции
-    # Это будет вашим решением
-    # Не меняйте название функции и её аргументы
-    alpha = 1 - p
-    loc = x.mean()
-    scale = np.sqrt(np.var(x)) / np.sqrt(len(x))
-    return loc - scale * norm.ppf(1 - alpha / 2), \
-           loc - scale * norm.ppf(alpha / 2)
+    left_bound = 0.074
+    max_x = max(x)
+    n = len(x)
+
+    g1 = (1 - p) ** (1 / n)
+    left = max_x
+    right = (max_x - left_bound) / g1 + left_bound
+
+    return (left, right)
